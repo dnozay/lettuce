@@ -1275,7 +1275,7 @@ def test_output_background_with_success_colorless():
         '    Given the variable "X" holds 2            # tests/functional/test_runner.py:{line}\n'
         '\n'
         '  Scenario: multiplication changing the value # tests/functional/bg_features/simple/simple.feature:9\n'
-        '    Given the variable "X" is equal to 2      # tests/functional/test_runner.py:{line}\n'
+        '    Given the variable "X" is equal to 2      # tests/functional/bg_features/simple/steps.py:5\n'
         '\n'
         '1 feature (1 passed)\n'
         '1 scenario (1 passed)\n'
