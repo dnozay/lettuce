@@ -18,6 +18,7 @@ from lettuce.registry import _function_matches, StepDict
 from lettuce.exceptions import StepLoadingError
 
 from nose.tools import assert_raises, assert_equal
+import random
 
 
 def test_function_matches_compares_with_abs_path():
@@ -56,6 +57,16 @@ def test_StepDict_load_a_step_return_the_given_function():
     steps = StepDict()
     func = lambda: ""
     assert_equal(steps.load("another step", func), func)
+
+def test_StepDict_return_items_in_same_order_loaded():
+    u"lettuce.STEP_REGISTRY.load(step, func) returns func"
+    steps = StepDict()
+    func = lambda: ""
+    regexes = ["one", "two", "three"]
+    random.shuffle(regexes)
+    for key in regexes:
+        steps.load(key, func)
+    assert_equal([ item[0] for item in steps.items() ], regexes)
 
 def test_StepDict_can_extract_a_step_sentence_from_function_name():
     u"lettuce.STEP_REGISTRY._extract_sentence(func) parse func name and return a sentence"

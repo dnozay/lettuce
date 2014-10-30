@@ -21,6 +21,11 @@ import traceback
 
 from lettuce.exceptions import StepLoadingError
 
+try:
+    from collections import OrderedDict
+except ImportError:  # py26
+    from ordereddict import OrderedDict
+
 world = threading.local()
 world._set = False
 
@@ -40,7 +45,7 @@ class CallbackDict(dict):
             for callback_list in action_dict.values():
                 callback_list[:] = []
 
-class StepDict(dict):
+class StepDict(OrderedDict):
     def __init__(self, *args, **kwargs):
         super(StepDict, self).__init__(*args, **kwargs)
         self._compiled = {}
